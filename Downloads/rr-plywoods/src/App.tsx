@@ -10,12 +10,11 @@ import Footer from './components/Footer'
 
 function App() {
   useEffect(() => {
-    // Smooth scroll polyfill for Safari
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault()
-        const target = document.querySelector((this as HTMLAnchorElement).getAttribute('href')!)
-        target?.scrollIntoView({ behavior: 'smooth' })
+        const href = (anchor as HTMLAnchorElement).getAttribute('href')
+        if (href) document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
       })
     })
   }, [])
